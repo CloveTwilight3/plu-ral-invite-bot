@@ -139,7 +139,7 @@ async function handleUserproxyCommand(interaction: ChatInputCommandInteraction) 
   const color = interaction.options.getString('color');
   const age = interaction.options.getString('age');
   const pronouns = interaction.options.getString('pronouns');
-  const touch = interaction.option.getString('touch');
+  const touch = interaction.options.getString('touch');
   
   if (color) requestedRoles.color = color;
   if (age) requestedRoles.age = age;
