@@ -47,6 +47,17 @@ export const data = new SlashCommandBuilder()
               value: pronoun
             }))
           ))
+      .addStringOption(option =>
+        option
+          .setName('touch')
+          .setDescription('Touch Roles')
+          .setRequired(false)
+          .addChoices(
+            ...Object.keys(ROLES.touch).map(touch => ({
+              name: touch,
+              value: touch
+            }))
+          ))
       .addBooleanOption(option =>
         option
           .setName('mc_access')
@@ -128,10 +139,12 @@ async function handleUserproxyCommand(interaction: ChatInputCommandInteraction) 
   const color = interaction.options.getString('color');
   const age = interaction.options.getString('age');
   const pronouns = interaction.options.getString('pronouns');
+  const touch = interaction.option.getString('touch');
   
   if (color) requestedRoles.color = color;
   if (age) requestedRoles.age = age;
   if (pronouns) requestedRoles.pronouns = pronouns;
+  if (touch) requestedRoles.touch = touch;
 
   // Access roles
   const accessRoles = ['mc_access', 'support_access', 'selfies_access', 'firearm_access', 'zomboid_access'];
@@ -161,7 +174,7 @@ async function handleUserproxyCommand(interaction: ChatInputCommandInteraction) 
   if (Object.keys(requestedRoles).length > 0) {
     const rolesList = Object.entries(requestedRoles)
       .map(([key, value]) => {
-        if (key === 'color' || key === 'age' || key === 'pronouns') {
+        if (key === 'color' || key === 'age' || key === 'pronouns' || key === 'touch') {
           return `${key}: ${value}`;
         }
         return key.replace('_access', ' access');

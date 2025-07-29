@@ -57,7 +57,14 @@ export const ROLES = {
     'firearm_access': '1250209630571855973',
     'zomboid_access': '1395484559306526801'
   },
+  touch:
+  {
+    'No Touching': '1355613699263434912',
+    'Ask Before Touching': '1355613284249632889',
+    'Touch Okay': '1356100166569955522'
+  },
   required: [
+    '1269213719498326099', // Activity Verified
     '1397731065166303314', // Plural Proxies
     '1263564926178427036',  // Reddit Mod
     '1398765431963254804' // Plural Invisible Role
