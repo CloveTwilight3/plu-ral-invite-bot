@@ -91,12 +91,12 @@ export const data = new SlashCommandBuilder()
         option
           .setName('channel')
           .setDescription('The channel to send requests to')
-          .setRequired(true)));
+          .setRequired(true)))
   .addSubcommand(subcommand =>
     subcommand
       .setName('wiki')
       .setDescription('Get the link to the wiki')
-  )
+  );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   const subcommand = interaction.options.getSubcommand();
