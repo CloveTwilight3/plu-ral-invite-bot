@@ -92,6 +92,11 @@ export const data = new SlashCommandBuilder()
           .setName('channel')
           .setDescription('The channel to send requests to')
           .setRequired(true)));
+  .addSubcommand(subcommand =>
+    subcommand
+      .setName('wiki')
+      .setDescription('Get the link to the wiki')
+  )
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   const subcommand = interaction.options.getSubcommand();
@@ -100,6 +105,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     await handleUserproxyCommand(interaction);
   } else if (subcommand === 'setchannel') {
     await handleSetchannelCommand(interaction);
+  } else if (subcommand === 'wiki') {
+    await handleWikiCommand(interaction);
   }
 }
 
@@ -243,4 +250,20 @@ async function handleSetchannelCommand(interaction: ChatInputCommandInteraction)
     content: `✅ Mod channel set to ${channel}`,
     ephemeral: true
   });
+}
+
+async function handleWikiCommand(interaction: ChatInputCommandInteraction) {
+  const embed = new EmbedBuilder()
+    .setTitle('📚 Wiki')
+    .setDescription('Here\'s the link to our wiki!')
+    .setColor(0x5865F2)
+    .addFields(
+      { name: 'Wiki Link', value: '[Click here to visit the wiki](https://github.com/CloveTwilight3/plu-ral-invite-bot/wiki)'}
+    )
+    .setTimestamp()
+
+  await interaction.reply({
+    embeds: [embed],
+    ephemeral: true
+  })
 }
